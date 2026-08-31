@@ -108,7 +108,7 @@ These are **hard constraints** out of respect for the source material:
 ---
 
 ## 9. API Usage — Al-Quran Cloud
-
+k
 - Base URL: `https://api.alquran.cloud/v1`
 - Arabic: `GET /surah/{n}/quran-uthmani`
 - Translation: `GET /surah/{n}/en.sahih`
