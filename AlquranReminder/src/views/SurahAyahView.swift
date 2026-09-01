@@ -11,18 +11,25 @@ struct SurahAyahView: View {
 			ScrollView {
 				LazyVStack(spacing: 8) {
 					ForEach(surahAyah?.verses ?? [], id: \.number) { verse in
-						HStack(alignment: .top, spacing: 12) {
-							Text(String(verse.number))
-								.frame(width: 32, height: 32)
-								.foregroundStyle(.white)
-								.font(.caption)
-								.background(Color.neutral, in: Circle())
+						VStack {
+							HStack(alignment: .top, spacing: 12) {
+								Text(String(verse.number))
+									.frame(width: 32, height: 32)
+									.foregroundStyle(.white)
+									.font(.caption)
+									.background(Color.neutral, in: Circle())
 
-							Text(verse.text)
-								.foregroundStyle(.black)
-								.font(.title2)
-								.multilineTextAlignment(.trailing)
-								.frame(maxWidth: .infinity, alignment: .trailing)
+								Text(verse.text)
+									.foregroundStyle(.black)
+									.font(.title2)
+									.multilineTextAlignment(.trailing)
+									.frame(maxWidth: .infinity, alignment: .trailing)
+							}
+							Text(verse.translationEn)
+								.foregroundStyle(Color.neutral)
+								.font(.caption)
+								.multilineTextAlignment(.leading)
+								.frame(maxWidth: .infinity, alignment: .leading)
 						}
 						.padding(.vertical, 8)
 						.padding(.horizontal, 16)
