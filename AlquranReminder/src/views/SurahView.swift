@@ -46,7 +46,7 @@ struct SurahView: View {
                 let surah = quranHelper.loadAllSurah()
                 listSurah = surah
             }.navigationDestination(for: Surah.self) { item in
-                SurahDetailView(surah: item)
+                SurahAyahView(surah: item)
             }
         }
     }
