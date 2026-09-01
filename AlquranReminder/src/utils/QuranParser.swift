@@ -1,23 +1,22 @@
 import Foundation
 
 struct QuranParser {
-    /// Parse Quran JSON from Data
-    static func parse(data: Data) throws -> [Surah] {
-        return try JSONDecoder().decode(Quran.self, from: data)
-    }
-
-    /// Parse Quran JSON from a file URL
-    static func parse(from fileURL: URL) throws -> [Surah] {
+    static func parseSurah(from fileURL: URL) throws -> [Surah] {
         let data = try Data(contentsOf: fileURL)
-        return try parse(data: data)
+        return try parseSurah(data: data)
     }
 
-    /// Parse Quran JSON from a file name in the app bundle
-    static func parse(filename: String) throws -> [Surah] {
-        guard let url = Bundle.main.url(forResource: filename, withExtension: "json") else {
-            throw QuranParserError.fileNotFound(filename)
-        }
-        return try parse(from: url)
+    static func parseSurah(data: Data) throws -> [Surah] {
+        return try JSONDecoder().decode([Surah].self, from: data)
+    }
+
+    static func parseSurahAyah(from fileURL: URL) throws -> SurahAyahModel {
+        let data = try Data(contentsOf: fileURL)
+        return try parseSurahAyah(data: data)
+    }
+
+    static func parseSurahAyah(data: Data) throws -> SurahAyahModel {
+        return try JSONDecoder().decode(SurahAyahModel.self, from: data)
     }
 }
 
