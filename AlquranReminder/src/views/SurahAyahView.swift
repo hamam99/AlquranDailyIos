@@ -20,7 +20,7 @@ struct SurahAyahView: View {
 
 							Text(verse.text)
 								.foregroundStyle(.black)
-								.font(.title)
+								.font(.title2)
 								.multilineTextAlignment(.trailing)
 								.frame(maxWidth: .infinity, alignment: .trailing)
 						}
