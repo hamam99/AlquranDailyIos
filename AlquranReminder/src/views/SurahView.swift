@@ -17,7 +17,7 @@ struct SurahView: View {
                                         .foregroundStyle(.white)
                                         .font(.caption)
                                         .frame(width: 32, height: 32)
-                                        .background(Color.primary, in: Circle())
+                                        .background(Color.neutral, in: Circle())
                                     VStack(alignment: .leading) {
                                         Text("\(surah.name)")
                                             .foregroundStyle(Color.onSurface)
