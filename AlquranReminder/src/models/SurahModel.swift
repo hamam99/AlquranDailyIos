@@ -84,4 +84,6 @@ struct Surah: Codable, Identifiable, Hashable {
 // MARK: - Type Aliases
 
 /// Array of all Surahs in the Quran
-typealias Quran = [Surah]
+// typealias Quran = [Surah]
+
+
