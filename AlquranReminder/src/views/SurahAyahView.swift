@@ -27,7 +27,7 @@ struct SurahAyahView: View {
 							}
 							Text(verse.translationEn)
 								.foregroundStyle(Color.neutral)
-								.font(.caption)
+								.font(.default)
 								.multilineTextAlignment(.leading)
 								.frame(maxWidth: .infinity, alignment: .leading)
 						}
