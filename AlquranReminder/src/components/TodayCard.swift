@@ -6,8 +6,7 @@ struct TodayCard: View {
             Text("Assalamu Alaikum").font(.title).foregroundStyle(.primary).bold()
             Text(getTodayDate()).font(.caption).foregroundStyle(.black)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .padding()
+        .frame(maxWidth: .infinity, alignment: .topLeading)
     }
 
     private func getTodayDate() -> String {
