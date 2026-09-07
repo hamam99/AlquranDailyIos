@@ -37,4 +37,15 @@ struct QuranHelper {
             return nil
         }
     }
+
+    /// Picks a random surah (1–114), loads it, then returns a random verse from it.
+    /// Returns `nil` if the file can't be found or decoded.
+    func getRandomAyah() -> Verse? {
+        let randomSurahNumber = Int.random(in: 1...114)
+        guard let surah = loadSurahAyah(surahNumber: randomSurahNumber), !surah.verses.isEmpty
+        else { return nil }
+
+        return surah.verses.randomElement()
+
+    }
 }

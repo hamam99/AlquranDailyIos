@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct AyahTodayCard: View {
+    @State private var todayVerse: Verse? = nil
+
+    let quranHelper = QuranHelper()
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -13,24 +16,27 @@ struct AyahTodayCard: View {
             .frame(alignment: .center)
             .background(Color.primaryFixed, in: RoundedRectangle(cornerRadius: 12))
 
-            Text("فَإِنَّ مَعَ الْعُسْرِ يُسْرًا")
+            Text(todayVerse?.text ?? "")
                 .foregroundStyle(.black)
                 .font(.title2)
                 .multilineTextAlignment(.trailing)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .trailing)
-            Text("For indeed, with hardship [will be] ease.")
+            Text(todayVerse?.translationEn ?? "")
                 .foregroundStyle(Color.neutral)
                 .font(.caption)
                 .multilineTextAlignment(.leading)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .background(Color.surfaceContainer, in: RoundedRectangle(cornerRadius: 12))
-        // .overlay(
-        //     RoundedRectangle(cornerRadius: 12)
-        //         .stroke(Color.surfaceContainer, lineWidth: 1)
-        // )
+        .task {
+            todayVerse = quranHelper.getRandomAyah()
+        }
     }
 }
 
