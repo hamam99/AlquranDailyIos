@@ -42,7 +42,8 @@ struct Surah: Codable, Identifiable, Hashable {
         numberOfSurah: Int? = nil,
         place: String? = nil,
         recitation: String? = nil,
-        type: String? = nil
+        type: String? = nil,
+        id: Int? = nil
     ) {
         self.name = name
         self.nameTranslations = nameTranslations
@@ -51,7 +52,7 @@ struct Surah: Codable, Identifiable, Hashable {
         self.place = place
         self.recitation = recitation
         self.type = type
-        self.id = numberOfSurah ?? 0
+        self.id = id ?? numberOfSurah ?? 0
     }
 
     init(from decoder: Decoder) throws {

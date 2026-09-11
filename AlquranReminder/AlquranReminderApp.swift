@@ -5,14 +5,14 @@
 //  Created by Hamam Nasrodin on 30/08/2026.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 @main
 struct AlquranReminderApp: App {
     var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
+        let schema: Schema = Schema([
+            // LastReadModel.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

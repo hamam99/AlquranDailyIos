@@ -16,7 +16,8 @@ struct DashboardView: View {
                     SurahAyahView(
                         surah: Surah(
                             name: item.surahName ?? "",
-                            numberOfSurah: item.surahNumber
+                            numberOfSurah: item.surahNumber,
+                            id: item.surahNumber
                         ),
                         todayVerse: item
                     )

@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 struct SurahAyahView: View {
@@ -6,7 +7,7 @@ struct SurahAyahView: View {
 	var todayVerse: TodayVerseModel? = nil
 
 	@State private var surahAyah: SurahAyahModel? = nil
-	@State private var scrollPosition: Int?
+	@State private var scrollPosition: Int? = nil
 
 	var body: some View {
 		ZStack {
@@ -60,7 +61,17 @@ struct SurahAyahView: View {
 			}
 		}
 		.onDisappear {
-			
+			guard let scrollPosition else { return }
+
+			do {
+				// let newItem = LastReadModel(
+				// 	surahName: surahAyah?.name ?? "",
+				// 	surahNumber: surah.id,
+				// 	verseNumber: scrollPosition
+				// )
+				// modelContext.insert(newItem)
+				// try modelContext.save()
+			} catch {}
 		}
 	}
 
