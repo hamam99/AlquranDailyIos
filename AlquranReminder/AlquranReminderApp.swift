@@ -11,9 +11,7 @@ import SwiftUI
 @main
 struct AlquranReminderApp: App {
     var sharedModelContainer: ModelContainer = {
-        let schema: Schema = Schema([
-            // LastReadModel.self
-        ])
+        let schema: Schema = Schema([])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
