@@ -8,6 +8,8 @@ struct DashboardView: View {
                 TodayCard()
                 AyahTodayCard()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .padding()
             .navigationDestination(
                 for: TodayVerseModel.self,
                 destination: { item in
@@ -21,8 +23,6 @@ struct DashboardView: View {
                 }
             )
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .padding()
     }
 }
 
