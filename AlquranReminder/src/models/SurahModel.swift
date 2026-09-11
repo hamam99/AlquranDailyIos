@@ -17,12 +17,12 @@ struct SurahNameTranslations: Codable, Hashable {
 struct Surah: Codable, Identifiable, Hashable {
     let id: Int
     let name: String
-    let nameTranslations: SurahNameTranslations
-    let numberOfAyah: Int
-    let numberOfSurah: Int
-    let place: String
-    let recitation: String
-    let type: String
+    let nameTranslations: SurahNameTranslations?
+    let numberOfAyah: Int?
+    let numberOfSurah: Int?
+    let place: String?
+    let recitation: String?
+    let type: String?
 
     enum CodingKeys: String, CodingKey {
         case name
@@ -37,12 +37,12 @@ struct Surah: Codable, Identifiable, Hashable {
     // Memberwise initializer for programmatic creation
     init(
         name: String,
-        nameTranslations: SurahNameTranslations,
-        numberOfAyah: Int,
-        numberOfSurah: Int,
-        place: String,
-        recitation: String,
-        type: String
+        nameTranslations: SurahNameTranslations? = nil,
+        numberOfAyah: Int? = nil,
+        numberOfSurah: Int? = nil,
+        place: String? = nil,
+        recitation: String? = nil,
+        type: String? = nil
     ) {
         self.name = name
         self.nameTranslations = nameTranslations
@@ -51,7 +51,7 @@ struct Surah: Codable, Identifiable, Hashable {
         self.place = place
         self.recitation = recitation
         self.type = type
-        self.id = numberOfSurah
+        self.id = numberOfSurah ?? 0
     }
 
     init(from decoder: Decoder) throws {
@@ -66,7 +66,7 @@ struct Surah: Codable, Identifiable, Hashable {
         self.type = try container.decode(String.self, forKey: .type)
 
         // Use numberOfSurah as the id
-        self.id = self.numberOfSurah
+        self.id = self.numberOfSurah ?? 0
     }
 
     func encode(to encoder: Encoder) throws {
@@ -85,5 +85,3 @@ struct Surah: Codable, Identifiable, Hashable {
 
 /// Array of all Surahs in the Quran
 // typealias Quran = [Surah]
-
-

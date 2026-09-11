@@ -3,8 +3,10 @@ import SwiftUI
 struct SurahAyahView: View {
 	var surah: Surah
 	var quranHelper = QuranHelper()
+	var todayVerse: TodayVerseModel? = nil
 
 	@State private var surahAyah: SurahAyahModel? = nil
+	@State private var scrollPosition: Int?
 
 	var body: some View {
 		ZStack {
@@ -31,6 +33,7 @@ struct SurahAyahView: View {
 								.multilineTextAlignment(.leading)
 								.frame(maxWidth: .infinity, alignment: .leading)
 						}
+						.id(verse.number)
 						.padding(.vertical, 8)
 						.padding(.horizontal, 16)
 						.overlay(
@@ -39,13 +42,26 @@ struct SurahAyahView: View {
 
 					}
 				}
-
 				.navigationTitle(surah.name)
 				.navigationBarTitleDisplayMode(.inline)
 				.toolbar(.hidden, for: .tabBar)
-			}.padding(12)
-		}.task {
+				.scrollTargetLayout()
+			}
+			.padding(12)
+			.scrollPosition(id: $scrollPosition)
+		}
+		.task {
 			surahAyah = quranHelper.loadSurahAyah(surahNumber: surah.id)
+
+			if let ayah = todayVerse?.verse?.number {
+				withAnimation {
+					scrollPosition = ayah
+				}
+			}
+		}
+		.onDisappear {
+			
 		}
 	}
+
 }

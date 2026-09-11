@@ -2,6 +2,6 @@ import Foundation
 
 struct TodayVerseModel: Decodable, Hashable {
     let surahName: String?
-    let surahNumber: String?
+    let surahNumber: Int?
     let verse: Verse?
 }

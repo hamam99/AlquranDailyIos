@@ -5,6 +5,22 @@ struct AyahTodayCard: View {
 
     let quranHelper = QuranHelper()
     var body: some View {
+        Group {
+            if let todayVerse {
+                NavigationLink(value: todayVerse) {
+                    cardContent(for: todayVerse)
+                }
+            } else {
+                ProgressView()
+                    .frame(maxWidth: .infinity, minHeight: 120, alignment: .center)
+            }
+        }
+        .task {
+            todayVerse = quranHelper.getTodayVerse()
+        }
+    }
+
+    private func cardContent(for item: TodayVerseModel) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Image(systemName: "sparkles")
@@ -16,14 +32,14 @@ struct AyahTodayCard: View {
             .frame(alignment: .center)
             .background(Color.primaryFixed, in: RoundedRectangle(cornerRadius: 12))
 
-            Text(todayVerse?.verse?.text ?? "")
+            Text(item.verse?.text ?? "")
                 .foregroundStyle(.black)
                 .font(.title2)
                 .multilineTextAlignment(.trailing)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .trailing)
-            Text(todayVerse?.verse?.translationEn ?? "")
+            Text(item.verse?.translationEn ?? "")
                 .foregroundStyle(Color.neutral)
                 .font(.default)
                 .multilineTextAlignment(.leading)
@@ -32,7 +48,7 @@ struct AyahTodayCard: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             Text(
-                "\(todayVerse?.surahName ?? "") [\(todayVerse?.surahNumber ?? ""):\(todayVerse?.verse?.number.description ?? "")]"
+                "\(item.surahName ?? "") [\(item.surahNumber.map(String.init) ?? ""):\(item.verse?.number.description ?? "")]"
             )
             .foregroundStyle(Color.secondary)
             .font(.caption)
@@ -41,9 +57,6 @@ struct AyahTodayCard: View {
         .padding()
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .background(Color.surfaceContainer, in: RoundedRectangle(cornerRadius: 12))
-        .task {
-            todayVerse = quranHelper.getTodayVerse()
-        }
     }
 }
 

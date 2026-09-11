@@ -23,13 +23,13 @@ struct SurahView: View {
                                             .foregroundStyle(Color.onSurface)
                                             .font(.headline)
                                         Text(
-                                            "\(surah.nameTranslations.en) • \(surah.numberOfAyah) Ayah"
+                                            "\(surah.nameTranslations?.en) • \(surah.numberOfAyah) Ayah"
                                         )
                                         .foregroundStyle(Color.neutral)
                                         .font(.caption)
                                     }
                                     Spacer()
-                                    Text(String(surah.nameTranslations.ar)).foregroundStyle(
+                                    Text(String(surah.nameTranslations?.ar ?? "")).foregroundStyle(
                                         Color.primary
                                     ).font(.title3)
                                 }

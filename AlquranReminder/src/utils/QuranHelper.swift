@@ -49,7 +49,7 @@ struct QuranHelper {
 
         return TodayVerseModel(
             surahName: surahDetail.name,
-            surahNumber: String(surahDetail.numberOfSurah),
+            surahNumber: surahDetail.numberOfSurah,
             verse: ayah
         )
     }
