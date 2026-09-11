@@ -6,6 +6,7 @@ struct DashboardView: View {
         NavigationStack {
             VStack(spacing: 32) {
                 TodayCard()
+                LastReadCard()
                 AyahTodayCard()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)

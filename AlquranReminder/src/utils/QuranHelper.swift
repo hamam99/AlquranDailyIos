@@ -53,4 +53,20 @@ struct QuranHelper {
             verse: ayah
         )
     }
+
+    func getLastReadAyah() -> LastReadModel? {
+        guard let data = UserDefaults.standard.data(forKey: "last_read_ayah") else {
+            return nil
+        }
+
+        let lastItemRead = try? JSONDecoder().decode(LastReadModel.self, from: data)
+        return lastItemRead
+
+    }
+
+    func saveLastReadAyah(lastRead: LastReadModel) {
+        if let encoded = try? JSONEncoder().encode(lastRead) {
+            UserDefaults.standard.set(encoded, forKey: "last_read_ayah")
+        }
+    }
 }

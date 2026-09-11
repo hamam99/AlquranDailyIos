@@ -63,15 +63,12 @@ struct SurahAyahView: View {
 		.onDisappear {
 			guard let scrollPosition else { return }
 
-			do {
-				// let newItem = LastReadModel(
-				// 	surahName: surahAyah?.name ?? "",
-				// 	surahNumber: surah.id,
-				// 	verseNumber: scrollPosition
-				// )
-				// modelContext.insert(newItem)
-				// try modelContext.save()
-			} catch {}
+			let lastRead = LastReadModel(
+				surahName: surahAyah?.name ?? "",
+				surahNumber: surah.id,
+				verseNumber: scrollPosition
+			)
+				quranHelper.saveLastReadAyah(lastRead: lastRead)
 		}
 	}
 

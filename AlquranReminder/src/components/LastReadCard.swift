@@ -5,6 +5,7 @@ struct LastReadCard: View {
     @State private var lastReadVerse: TodayVerseModel? = nil
 
     let quranHelper = QuranHelper()
+
     var body: some View {
         Group {
             if let lastReadVerse {
@@ -12,21 +13,29 @@ struct LastReadCard: View {
                     cardContent(for: lastReadVerse)
                 }
             } else {
-                ProgressView()
-                    .frame(maxWidth: .infinity, minHeight: 120, alignment: .center)
+                Text("No last read")
             }
         }
         .task {
+            guard let lastRead = quranHelper.getLastReadAyah() else {
+                return
+            }
 
-            // lastReadVerse = TodayVerseModel(surahName: , surahNumber: Int?, verse: Verse?)
+            lastReadVerse = TodayVerseModel(
+                surahName: lastRead.surahName, surahNumber: lastRead.surahNumber,
+                verse: Verse(
+                    number: lastRead.surahNumber,
+                    text: "",
+                    translationEn: "",
+                    translationID: ""))
         }
     }
 
     private func cardContent(for item: TodayVerseModel) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Image(systemName: "sparkles")
-                Text("AYAH OF THE DAY")
+                Image(systemName: "clock.arrow.trianglehead.counterclockwise.rotate.90")
+                Text("LAST READ")
                     .foregroundStyle(Color.primaryContainer).font(.caption)
             }
             .padding(.horizontal, 8)
@@ -34,14 +43,14 @@ struct LastReadCard: View {
             .frame(alignment: .center)
             .background(Color.primaryFixed, in: RoundedRectangle(cornerRadius: 12))
 
-            Text(item.verse?.text ?? "")
+            Text(item.surahName ?? "")
                 .foregroundStyle(.black)
                 .font(.title2)
-                .multilineTextAlignment(.trailing)
+                .multilineTextAlignment(.leading)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-            Text(item.verse?.translationEn ?? "")
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text("Ayah \(item.verse?.number ?? 0)")
                 .foregroundStyle(Color.neutral)
                 .font(.default)
                 .multilineTextAlignment(.leading)
@@ -49,16 +58,15 @@ struct LastReadCard: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            Text(
-                "\(item.surahName ?? "") [\(item.surahNumber.map(String.init) ?? ""):\(item.verse?.number.description ?? "")]"
-            )
-            .foregroundStyle(Color.secondary)
-            .font(.caption)
-            .bold()
+            Button("Continue") {}
+                .buttonStyle(.bordered)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .background(Color.surfaceContainer, in: RoundedRectangle(cornerRadius: 12))
+
     }
 }
 
