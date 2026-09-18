@@ -13,7 +13,7 @@ struct LastReadCard: View {
                     cardContent(for: lastReadVerse)
                 }
             } else {
-                Text("No last read")
+                Text("No last read ayah")
             }
         }
         .task {
