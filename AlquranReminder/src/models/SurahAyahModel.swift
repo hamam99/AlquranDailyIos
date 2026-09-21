@@ -57,7 +57,7 @@ struct Kemenag: Decodable, Hashable {
 }
 
 // MARK: - Verse
-struct Verse: Decodable, Hashable {
+struct Verse: Codable, Hashable {
     let number: Int
     let text: String
     let translationEn: String

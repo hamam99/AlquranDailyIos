@@ -1,6 +1,6 @@
 import Foundation
 
-struct TodayVerseModel: Decodable, Hashable {
+struct TodayVerseModel: Codable, Hashable {
     let surahName: String?
     let surahNumber: Int?
     let verse: Verse?
